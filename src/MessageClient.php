@@ -4,6 +4,7 @@ namespace Xiaosongshu\Message;
 
 use Xiaosongshu\Message\exception\TencentMsgException;
 use Xiaosongshu\Message\provider\AliSmsProvider;
+use Xiaosongshu\Message\provider\MessageProviderInterface;
 use Xiaosongshu\Message\provider\TencentEmailProvider;
 use Xiaosongshu\Message\provider\TencentSmsProvider;
 
@@ -51,7 +52,7 @@ class MessageClient
     public function __get(string $name):object
     {
         if (!isset($name) || !isset($this->alias[$name])) {
-            throw new TencentMsgException("{$name} is invalid.");
+            throw new TencentMsgException("[$name]不合法，或者服务不存在");
         }
 
         if (isset($this->providers[$name])) {
@@ -61,5 +62,25 @@ class MessageClient
         return $this->providers[$name] = $this->configs ?
             new $class($this, $this->configs) :
             new $class($this);
+    }
+
+    /**
+     * 注册服务
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    public  function register(string $key, string $value): void
+    {
+        if (class_exists($value, false)) {
+            $obj = new $value;
+            if ($obj instanceof MessageProviderInterface) {
+                $this->alias[$key] = $value;
+            }else{
+                throw new TencentMsgException("[$value]必须继承接口".MessageProviderInterface::class);
+            }
+        }else{
+            throw new TencentMsgException("注册服务失败：[$value] 不存在");
+        }
     }
 }
