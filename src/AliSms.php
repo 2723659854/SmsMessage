@@ -6,7 +6,7 @@ use Xiaosongshu\Message\provider\AliSmsProvider;
 
 /**
  * @purpose 短信发送包静态化处理
- * @method object init(array $config) 配置服务
+ * @method object config(array $config) 配置服务
  * @method object setTemplate(string $templateId = null) 设置模板
  * @method object setContent(array $content) 设置内容
  * @method object sendTo(array $sendTo) 接收人

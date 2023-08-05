@@ -38,9 +38,6 @@ class TencentSmsProvider implements MessageProviderInterface
      * 发送短信
      * @author yanglong
      * @date  2023年2月17日15:22:51
-     * @example 用法：
-     * $config=[ 'accessKeyId'=>'LTAI5tBMSpwR9DGfyYz1uQqW', 'accessKeySecret'=>'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA', 'signName'=>'阿里云短信测试','sdkAppId'=>"1400383641" ];
-     * $res=(new MessageClient($config))->Tsms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([$request->post('phone')])->send();
      */
     public function __construct(object $object,array $config=[])
     {
@@ -57,8 +54,12 @@ class TencentSmsProvider implements MessageProviderInterface
         return $this;
     }
 
-    /** 初始化包信息，用于静态化调佣 */
-    public function init(array $configs): object
+    /**
+     * 初始化配置
+     * @param array $configs = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'signName'=>'','sdkAppId'=>"" ];
+     * @return object
+     */
+    public function config(array $configs): object
     {
         $this->secretId   = $configs['accessKeyId']??"";
         $this->secretKey  = $configs['accessKeySecret']??'';
@@ -123,7 +124,7 @@ class TencentSmsProvider implements MessageProviderInterface
 
     /**
      * 发送短信
-     * @return array
+     * @return array = ['status'=>200 , 'body'=>'ok']
      */
     public function send(): array
     {

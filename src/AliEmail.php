@@ -6,7 +6,7 @@ use Xiaosongshu\Message\provider\AliEmailProvider;
 
 /**
  * @purpose 阿里邮件客户端静态化调用
- * @method object init(array $config) 配置服务
+ * @method object config(array $config) 配置服务
  * @method object setContent(array $content) 设置内容
  * @method object setTitle(string $title) 设置标题
  * @method object sendTo(array $sendTo) 接收人
@@ -27,7 +27,7 @@ class AliEmail
      * 获取阿里邮件客户端实例
      * @return object
      */
-    public static function getInstance():object
+    protected static function getInstance():object
     {
         if (!isset(static::$instance)){
             static::$instance= new AliEmailProvider(new \stdClass(),[]);

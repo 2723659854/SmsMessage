@@ -12,12 +12,6 @@ use Exception;
 
 /**
  * @purpose 阿里云短信发送
- * @author yanglong
- * @date 2023年2月17日15:12:49
- * @example 用法
- * $config=[ 'accessKeyId'=>'LTAI5tBMSpwR9DGfyYz1uQqW', 'accessKeySecret'=>'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA', 'signName'=>'阿里云短信测试','sdkAppId'=>"1400383641" ];
- * $res=(new MessageClient($config))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([$request->post('phone')])->send();
- *
  */
 class AliSmsProvider implements MessageProviderInterface
 {
@@ -36,8 +30,12 @@ class AliSmsProvider implements MessageProviderInterface
     /** @var Dysmsapi $client 阿里云短信客户端 */
     protected Dysmsapi $client;
 
-    /** 创建客户端 */
-    public function __construct(object $object,array $config=[])
+    /**
+     * 创建客户端
+     * @param object|null $object
+     * @param array $config = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'signName'=>'', 'sdkAppId'=>""];
+     */
+    public function __construct(?object $object,array $config=[])
     {
         $this->accessKeyId     = $config['accessKeyId'] ?? '';
         $this->accessKeySecret = $config['accessKeySecret'] ?? '';
@@ -50,8 +48,12 @@ class AliSmsProvider implements MessageProviderInterface
         $this->client= new Dysmsapi($config);
     }
 
-    /** 初始化客户端,用于静态化调用 */
-    public function init(array $configs):object{
+    /**
+     * 初始化配置
+     * @param array $configs = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'signName'=>'', 'sdkAppId'=>""];
+     * @return object
+     */
+    public function config(array $configs):object{
         $this->accessKeyId     = $configs['accessKeyId'] ?? '';
         $this->accessKeySecret = $configs['accessKeySecret'] ?? '';
         $this->signName=$configs['signName']??"阿里云短信测试";
@@ -68,8 +70,6 @@ class AliSmsProvider implements MessageProviderInterface
      * 设置标题
      * @param string $title
      * @return object
-     * @author yanglong
-     * @date 2023年2月17日15:07:43
      */
     public function setTitle(string $title): object
     {
@@ -80,8 +80,6 @@ class AliSmsProvider implements MessageProviderInterface
      * 设置内容
      * @param array $content =[ "code"=>999999]
      * @return object
-     * @author yanglong
-     * @date 2023年2月17日15:07:43
      */
     public function setContent(array $content): object
     {
@@ -93,8 +91,6 @@ class AliSmsProvider implements MessageProviderInterface
      * 设置模板
      * @param string $templateId="SMS_154950909"
      * @return object
-     * @author yanglong
-     * @date 2023年2月17日15:07:43
      */
     public function setTemplate(string $templateId): object
     {
@@ -106,8 +102,6 @@ class AliSmsProvider implements MessageProviderInterface
      * 接收人
      * @param array $sendTo=[13986598754,13885968748,...]
      * @return object
-     * @author yanglong
-     * @date 2023年2月17日15:07:43
      */
     public function sendTo(array $sendTo): object
     {
@@ -118,8 +112,6 @@ class AliSmsProvider implements MessageProviderInterface
     /**
      * 发送消息
      * @return array=["status"=>200,"body"=>["bizId": "630111676617258274^0", "code": "OK", "message": "OK", "requestId": "C00B4D8C-9296-51BF-93F1-9F689EE607CB"]]
-     * @author yanglong
-     * @date 2023年2月17日15:07:43
      */
     public function send(): array
     {

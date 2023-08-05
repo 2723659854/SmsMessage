@@ -22,7 +22,7 @@ use Xiaosongshu\Message\provider\TencentSmsProvider;
 class MessageClient
 {
     /** @var array|string[] */
-    protected array $alias = [
+    protected static array $alias = [
         /** 腾讯邮箱 */
         'Temail' => TencentEmailProvider::class,
         /** 腾讯短信 */
@@ -34,10 +34,10 @@ class MessageClient
     ];
 
     /** @var array */
-    protected array $providers = [];
+    protected static array $providers = [];
 
     /** @var array */
-    public array $configs = [];
+    public static array $configs = [];
 
     /**
      * 初始化配置
@@ -45,7 +45,7 @@ class MessageClient
      */
     public function __construct(?array $configs = null)
     {
-        $this->configs = $configs ?? [];
+        static::$configs= $configs ?? [];
     }
 
     /**
@@ -55,17 +55,37 @@ class MessageClient
      */
     public function __get(string $name):object
     {
-        if (!isset($name) || !isset($this->alias[$name])) {
+        if (!isset($name) || !isset(static::$alias[$name])) {
             throw new TencentMsgException("[$name]不合法，或者服务不存在");
         }
 
-        if (isset($this->providers[$name])) {
-            return $this->providers[$name];
+        if (isset(static::$providers[$name])) {
+            return static::$providers[$name];
         }
-        $class = $this->alias[$name];
-        return $this->providers[$name] = $this->configs ?
-            new $class($this, $this->configs) :
+        $class = static::$alias[$name];
+        return static::$providers[$name] = static::$configs ?
+            new $class($this, static::$configs) :
             new $class($this);
+    }
+
+    /**
+     * 被静态化调用
+     * @param string $name
+     * @return object
+     */
+    public static function __callStatic(string $name):object
+    {
+        if (!isset($name) || !isset(static::$alias[$name])) {
+            throw new TencentMsgException("[$name]不合法，或者服务不存在");
+        }
+
+        if (isset(static::$providers[$name])) {
+            return static::$providers[$name];
+        }
+        $class = static::$alias[$name];
+        return static::$providers[$name] = static::$configs ?
+            new $class(new \stdClass(), static::$configs) :
+            new $class(new \stdClass());
     }
 
     /**
@@ -74,12 +94,12 @@ class MessageClient
      * @param string $value
      * @return void
      */
-    public  function register(string $key, string $value): void
+    public static function register(string $key, string $value): void
     {
         if (class_exists($value)) {
             $obj = new $value;
             if ($obj instanceof MessageProviderInterface) {
-                $this->alias[$key] = $value;
+                static::$alias[$key] = $value;
             }else{
                 throw new TencentMsgException("[$value]必须继承接口".MessageProviderInterface::class);
             }

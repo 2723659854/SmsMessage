@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Xiaosongshu\Message\provider;
 
-use Xiaosongshu\message\exception\TencentMsgException;
+use Xiaosongshu\Message\exception\TencentMsgException;
 use TencentCloud\Common\Credential;
 use TencentCloud\Common\Exception\TencentCloudSDKException;
 use TencentCloud\Ses\V20201002\Models\SendEmailRequest;
@@ -12,8 +12,6 @@ use TencentCloud\Ses\V20201002\SesClient;
 
 /**
  * @purpose 集成腾讯邮件发送
- * @author yanglong
- * @date 2023年2月17日15:22:51
  */
 class TencentEmailProvider implements MessageProviderInterface
 {
@@ -36,16 +34,14 @@ class TencentEmailProvider implements MessageProviderInterface
     protected string $region = 'ap-hongkong';
 
     /**
-     *  发送邮件
-     * @author yanglong
-     * @date 2023年2月17日15:22:51
-     * @example 用法(链式操作):
-     *  $response=TencentEmail::init($config=[])->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '牡丹花'])->setTo([$emailAddress])->send();
+     * 创建客户端
+     * @param object|null $object
+     * @param array $config = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'fromAddress'=>''];
      */
-    public function __construct(object $object,array $config=[])
+    public function __construct(?object $object,array $config=[])
     {
-        $this->secretId    = $config['secretId'];
-        $this->secretKey   = $config['secretKey'];
+        $this->secretId    = $config['accessKeyId'];
+        $this->secretKey   = $config['accessKeySecret'];
         $this->fromAddress = $config['fromAddress'];
         $Credential        = new Credential($this->secretId, $this->secretKey);
         $this->Credential  = $Credential;
@@ -56,11 +52,15 @@ class TencentEmailProvider implements MessageProviderInterface
         return $this;
     }
 
-    /** 初始化包信息，用于静态化调用 */
-    public function init(array $configs): object
+    /**
+     * 初始化配置
+     * @param array $configs = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'fromAddress'=>''];
+     * @return object
+     */
+    public function config(array $configs): object
     {
-        $this->secretId    = $configs['secretId'];
-        $this->secretKey   = $configs['secretKey'];
+        $this->secretId    = $configs['accessKeyId'];
+        $this->secretKey   = $configs['accessKeySecret'];
         $this->fromAddress = $configs['fromAddress'];
         $Credential        = new Credential($this->secretId, $this->secretKey);
         $this->Credential  = $Credential;
@@ -120,14 +120,15 @@ class TencentEmailProvider implements MessageProviderInterface
 
     /**
      * 发送邮件
-     * @return array
+     * @return array = ['status'=>200 , 'body'=>'ok' ]
      */
     public function send(): array
     {
         try {
             $client = new SesClient($this->Credential, $this->region);
             $this->sendRequest->setTemplate($this->template);
-            return [json_decode(json_encode($client->SendEmail($this->sendRequest)), true)];
+            $client->SendEmail($this->sendRequest);
+            return ['status'=>200,'body'=>'ok'];
         } catch (TencentCloudSDKException $exception) {
             throw new TencentMsgException($exception->getMessage());
         }

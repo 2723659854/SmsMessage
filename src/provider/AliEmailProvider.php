@@ -11,8 +11,6 @@ use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 
 /**
  * @purpose 阿里云邮件发送提供者
- * @author yanglong
- * @date 2023年8月5日14:41:10
  */
 class AliEmailProvider implements MessageProviderInterface
 {
@@ -36,13 +34,13 @@ class AliEmailProvider implements MessageProviderInterface
 
     /**
      * 初始化
-     * @param object $object
-     * @param array $configs
+     * @param object|null $object
+     * @param array $configs = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'fromAddress'=>'']
      */
-    public function __construct(object $object,array $configs=[]){
+    public function __construct(?object $object,array $configs=[]){
         $this->accessKeyId = $configs['accessKeyId']??'';
         $this->accessKeySecret = $configs['accessKeySecret']??'';
-        $this->accountName=$configs['accountName']??'';
+        $this->accountName=$configs['fromAddress']??'';
         $config = new Config([
             "accessKeyId" => $this->accessKeyId,
             "accessKeySecret" => $this->accessKeySecret
@@ -53,13 +51,13 @@ class AliEmailProvider implements MessageProviderInterface
 
     /**
      * 初始化包配置，用于静态化调用
-     * @param array $configs
+     * @param array $configs = [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'fromAddress'=>'']
      * @return object
      */
-    public function init(array $configs):object{
+    public function config(array $configs):object{
         $this->accessKeyId = $configs['accessKeyId']??'';
         $this->accessKeySecret = $configs['accessKeySecret']??"";
-        $this->accountName=$configs['accountName']??'';
+        $this->accountName=$configs['fromAddress']??'';
         $config = new Config([
             "accessKeyId" => $this->accessKeyId,
             "accessKeySecret" => $this->accessKeySecret
@@ -109,7 +107,7 @@ class AliEmailProvider implements MessageProviderInterface
 
     /**
      * 发送消息
-     * @return array
+     * @return array = ['status'=>200 , 'body' =>'ok' ]
      */
     public function send():array{
         $this->singleSendMailRequest = new SingleSendMailRequest([

@@ -11,11 +11,11 @@ interface MessageProviderInterface
 {
 
     /**
-     * 初始化包配置，用于静态化调用
+     * 初始化配置
      * @param array $configs
      * @return object
      */
-    public function init(array $configs):object;
+    public function config(array $configs):object;
     /**
      * 设置标题
      * @param string $title

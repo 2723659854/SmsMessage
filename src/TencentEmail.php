@@ -6,7 +6,7 @@ use Xiaosongshu\Message\provider\TencentEmailProvider;
 
 /**
  * @purpose 邮件发送包静态化处理
- * @method object init(array $config) 配置服务
+ * @method object config(array $config) 配置服务
  * @method object setTemplate(string $templateId = null) 设置模板
  * @method object setContent(array $content) 设置内容
  * @method object setTitle(string $title) 设置标题
@@ -14,7 +14,7 @@ use Xiaosongshu\Message\provider\TencentEmailProvider;
  * @method array  send() 发送邮件
  * @author yanglong
  * @date  2023年2月17日15:22:51
- * @example $config=[ 'accessKeyId'=>'LTAI5tBMSpwR9DGfyYz1uQqW', 'accessKeySecret'=>'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA', 'signName'=>'阿里云短信测试','sdkAppId'=>"1400383641" ];
+ * @example $config= [ 'accessKeyId'=>'', 'accessKeySecret'=>'', 'fromAddress'=>''];
  * @example TencentEmail::init($config)->setTemplate()->setTitle($param['title'])->setConTent(['username' => $param['username']])->sendTo([$param['email']])->send();
  */
 class TencentEmail
