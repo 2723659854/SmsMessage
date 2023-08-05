@@ -19,6 +19,6 @@
         "php": ">=7.0",
         "alibabacloud/dypnsapi-20170525": "1.0.9",
         "tencentcloud/tencentcloud-sdk-php": "3.0.710",
-        "alibabacloud/dysmsapi-20170525": "dev-master"
+        "alibabacloud/dysmsapi-20170525": "^2.0"
     }
 }
