@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Xiaosongshu\Message;
 
 use Xiaosongshu\Message\exception\TencentMsgException;
@@ -11,9 +12,6 @@ use Xiaosongshu\Message\provider\TencentSmsProvider;
 
 /**
  * @purpose 发送通知消息客户端
- * @author yanglong
- * @date 2023年2月17日15:42:51
- * @example 阿里云短信发送 (new MessageClient([]))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['1398xxxx423'])->send();
  * @property TencentEmailProvider $Temail 腾讯邮箱
  * @property TencentSmsProvider $Tsms 腾讯短信
  * @property AliSmsProvider $Asms 阿里短信
@@ -28,9 +26,9 @@ class MessageClient
         /** 腾讯短信 */
         'Tsms' => TencentSmsProvider::class,
         /** 阿里短信 */
-        'Asms'=>AliSmsProvider::class,
+        'Asms' => AliSmsProvider::class,
         /** 阿里邮件 */
-        'Aemail' =>AliEmailProvider::class
+        'Aemail' => AliEmailProvider::class
     ];
 
     /** @var array */
@@ -45,15 +43,15 @@ class MessageClient
      */
     public function __construct(?array $configs = null)
     {
-        static::$configs= $configs ?? [];
+        static::$configs = $configs ?? [];
     }
 
     /**
-     * 调用提供者
+     * 动态调用
      * @param string $name
      * @return object
      */
-    public function __get(string $name):object
+    public function __get(string $name): object
     {
         if (!isset($name) || !isset(static::$alias[$name])) {
             throw new TencentMsgException("[$name]不合法，或者服务不存在");
@@ -71,9 +69,10 @@ class MessageClient
     /**
      * 被静态化调用
      * @param string $name
+     * @param array $params
      * @return object
      */
-    public static function __callStatic(string $name):object
+    public static function __callStatic(string $name, array $params): object
     {
         if (!isset($name) || !isset(static::$alias[$name])) {
             throw new TencentMsgException("[$name]不合法，或者服务不存在");
@@ -89,21 +88,33 @@ class MessageClient
     }
 
     /**
-     * 注册服务
+     * 静态注册服务
      * @param string $key
      * @param string $value
      * @return void
      */
     public static function register(string $key, string $value): void
     {
+        static::bind($key, $value);
+    }
+
+    /**
+     * 动态注册服务
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    public function bind(string $key, string $value): void
+    {
+
         if (class_exists($value)) {
-            $obj = new $value;
-            if ($obj instanceof MessageProviderInterface) {
+            $class = new \ReflectionClass($value);
+            if ($class->newInstance(null) instanceof MessageProviderInterface){
                 static::$alias[$key] = $value;
-            }else{
-                throw new TencentMsgException("[$value]必须继承接口".MessageProviderInterface::class);
+            } else {
+                throw new TencentMsgException("[$value]必须继承接口" . MessageProviderInterface::class);
             }
-        }else{
+        } else {
             throw new TencentMsgException("注册服务失败：[$value] 不存在");
         }
     }

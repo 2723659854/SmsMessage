@@ -40,9 +40,9 @@ class TencentEmailProvider implements MessageProviderInterface
      */
     public function __construct(?object $object,array $config=[])
     {
-        $this->secretId    = $config['accessKeyId'];
-        $this->secretKey   = $config['accessKeySecret'];
-        $this->fromAddress = $config['fromAddress'];
+        $this->secretId    = $config['accessKeyId']??'';
+        $this->secretKey   = $config['accessKeySecret']??'';
+        $this->fromAddress = $config['fromAddress']??'';
         $Credential        = new Credential($this->secretId, $this->secretKey);
         $this->Credential  = $Credential;
         $sendRequest       = new SendEmailRequest();
@@ -59,9 +59,9 @@ class TencentEmailProvider implements MessageProviderInterface
      */
     public function config(array $configs): object
     {
-        $this->secretId    = $configs['accessKeyId'];
-        $this->secretKey   = $configs['accessKeySecret'];
-        $this->fromAddress = $configs['fromAddress'];
+        $this->secretId    = $configs['accessKeyId']??'';
+        $this->secretKey   = $configs['accessKeySecret']??'';
+        $this->fromAddress = $configs['fromAddress']??'';
         $Credential        = new Credential($this->secretId, $this->secretKey);
         $this->Credential  = $Credential;
         $sendRequest       = new SendEmailRequest();

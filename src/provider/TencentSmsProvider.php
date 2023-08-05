@@ -43,8 +43,8 @@ class TencentSmsProvider implements MessageProviderInterface
     {
         $this->secretId   = $config['accessKeyId']??"";
         $this->secretKey  = $config['accessKeySecret']??'';
-        $this->sdkAppId   = $config['sdkAppId']??"1400383641";
-        $this->signName   = $config['signName']??"兰台的小家网";
+        $this->sdkAppId   = $config['sdkAppId']??"";
+        $this->signName   = $config['signName']??"";
         $credential       = new Credential($this->secretId, $this->secretKey);
         $this->credential = $credential;
         $request          = new SendSmsRequest();
@@ -63,8 +63,8 @@ class TencentSmsProvider implements MessageProviderInterface
     {
         $this->secretId   = $configs['accessKeyId']??"";
         $this->secretKey  = $configs['accessKeySecret']??'';
-        $this->sdkAppId   = $configs['sdkAppId']??"1400383641";
-        $this->signName   = $configs['signName']??"兰台的小家网";
+        $this->sdkAppId   = $configs['sdkAppId']??"";
+        $this->signName   = $configs['signName']??"";
         $credential       = new Credential($this->secretId, $this->secretKey);
         $this->credential = $credential;
         $request          = new SendSmsRequest();
