@@ -81,5 +81,9 @@ use Xiaosongshu\Message\AliSms;
         MessageClient::other()->config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '躺不平，摆不烂'])->sendTo([''])->send();  
 ```
 注册的扩展服务只在当前生命周期内有效。
+
+##### 异常捕获
+catch Xiaosongshu\Message\exception\TencentMsgException
+
 #####
 联系作者：2723659854@qq.com

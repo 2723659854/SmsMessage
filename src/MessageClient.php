@@ -92,21 +92,10 @@ class MessageClient
      * @param string $key
      * @param string $value
      * @return void
+     * @throws \ReflectionException
      */
     public static function register(string $key, string $value): void
     {
-        static::bind($key, $value);
-    }
-
-    /**
-     * 动态注册服务
-     * @param string $key
-     * @param string $value
-     * @return void
-     */
-    public function bind(string $key, string $value): void
-    {
-
         if (class_exists($value)) {
             $class = new \ReflectionClass($value);
             if ($class->newInstance(null) instanceof MessageProviderInterface){
@@ -117,5 +106,16 @@ class MessageClient
         } else {
             throw new TencentMsgException("注册服务失败：[$value] 不存在");
         }
+    }
+
+    /**
+     * 动态注册服务
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    public function bind(string $key, string $value): void
+    {
+        static::register($key,$value);
     }
 }
