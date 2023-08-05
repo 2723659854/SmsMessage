@@ -44,8 +44,8 @@ class TencentSmsProvider implements MessageProviderInterface
      */
     public function __construct(object $object,array $config=[])
     {
-        $this->secretId   = $config['accessKeyId']??"AKIDQfhU4bv1tXw7nFTVJ8qOksumUxCDzCBv";
-        $this->secretKey  = $config['accessKeySecret']??'ax6HEzWptjLjtoZ6PUKwKTN3Vpw1tXUK';
+        $this->secretId   = $config['accessKeyId']??"";
+        $this->secretKey  = $config['accessKeySecret']??'';
         $this->sdkAppId   = $config['sdkAppId']??"1400383641";
         $this->signName   = $config['signName']??"兰台的小家网";
         $credential       = new Credential($this->secretId, $this->secretKey);
@@ -60,8 +60,8 @@ class TencentSmsProvider implements MessageProviderInterface
     /** 初始化包信息，用于静态化调佣 */
     public function init(array $configs): object
     {
-        $this->secretId   = $configs['accessKeyId']??"AKIDQfhU4bv1tXw7nFTVJ8qOksumUxCDzCBv";
-        $this->secretKey  = $configs['accessKeySecret']??'ax6HEzWptjLjtoZ6PUKwKTN3Vpw1tXUK';
+        $this->secretId   = $configs['accessKeyId']??"";
+        $this->secretKey  = $configs['accessKeySecret']??'';
         $this->sdkAppId   = $configs['sdkAppId']??"1400383641";
         $this->signName   = $configs['signName']??"兰台的小家网";
         $credential       = new Credential($this->secretId, $this->secretKey);

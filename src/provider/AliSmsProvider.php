@@ -37,8 +37,8 @@ class AliSmsProvider implements MessageProviderInterface
     /** 创建客户端 */
     public function __construct(object $object,array $config=[])
     {
-        $this->accessKeyId     = $config['accessKeyId'] ?? 'LTAI5tBMSpwR9DGfyYz1uQqW';
-        $this->accessKeySecret = $config['accessKeySecret'] ?? 'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA';
+        $this->accessKeyId     = $config['accessKeyId'] ?? '';
+        $this->accessKeySecret = $config['accessKeySecret'] ?? '';
         $this->signName=$config['signName']??"阿里云短信测试";
         $config                = new Config([
             "accessKeyId" => $this->accessKeyId,
@@ -50,8 +50,8 @@ class AliSmsProvider implements MessageProviderInterface
 
     /** 初始化客户端,用于静态化调用 */
     public function init(array $configs):object{
-        $this->accessKeyId     = $configs['accessKeyId'] ?? 'LTAI5tBMSpwR9DGfyYz1uQqW';
-        $this->accessKeySecret = $configs['accessKeySecret'] ?? 'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA';
+        $this->accessKeyId     = $configs['accessKeyId'] ?? '';
+        $this->accessKeySecret = $configs['accessKeySecret'] ?? '';
         $this->signName=$configs['signName']??"阿里云短信测试";
         $config                = new Config([
             "accessKeyId" => $this->accessKeyId,
