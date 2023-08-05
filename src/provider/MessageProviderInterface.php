@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Xiaosongshu\message\provider;
+namespace Xiaosongshu\Message\provider;
 
 /**
  * @purpose 通知消息模板接口

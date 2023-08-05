@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Xiaosongshu\message;
+namespace Xiaosongshu\Message;
 
-use Xiaosongshu\message\provider\TencentEmailProvider;
+use Xiaosongshu\Message\provider\TencentEmailProvider;
 
 /**
  * @purpose 邮件发送包静态化处理

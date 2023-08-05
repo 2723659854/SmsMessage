@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
-namespace Xiaosongshu\message\provider;
+namespace Xiaosongshu\Message\provider;
 
 use AlibabaCloud\SDK\Dysmsapi\V20170525\Dysmsapi;
 use AlibabaCloud\SDK\Dysmsapi\V20170525\Models\SendSmsRequest;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 use Darabonba\OpenApi\Models\Config;
 use Exception;
-use Xiaosongshu\message\exception\TencentMsgException;
+use Xiaosongshu\Message\exception\TencentMsgException;
 
 /**
  * @purpose 阿里云短信发送

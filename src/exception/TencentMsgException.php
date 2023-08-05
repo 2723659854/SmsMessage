@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiaosongshu\message\exception;
+namespace Xiaosongshu\Message\exception;
 
 class TencentMsgException extends \RuntimeException
 {

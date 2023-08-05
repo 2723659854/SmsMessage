@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Xiaosongshu\message\provider;
+namespace Xiaosongshu\Message\provider;
 
 use Xiaosongshu\message\exception\TencentMsgException;
 use TencentCloud\Common\Credential;

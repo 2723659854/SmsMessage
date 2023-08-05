@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Xiaosongshu\message;
+namespace Xiaosongshu\Message;
 
-use Xiaosongshu\message\provider\AliSmsProvider;
+use Xiaosongshu\Message\provider\AliSmsProvider;
 
 /**
  * @purpose 短信发送包静态化处理

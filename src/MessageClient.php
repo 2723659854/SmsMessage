@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
-namespace Xiaosongshu\message;
+namespace Xiaosongshu\Message;
 
-use Xiaosongshu\message\exception\TencentMsgException;
-use Xiaosongshu\message\provider\AliSmsProvider;
-use Xiaosongshu\message\provider\TencentEmailProvider;
-use Xiaosongshu\message\provider\TencentSmsProvider;
+use Xiaosongshu\Message\exception\TencentMsgException;
+use Xiaosongshu\Message\provider\AliSmsProvider;
+use Xiaosongshu\Message\provider\TencentEmailProvider;
+use Xiaosongshu\Message\provider\TencentSmsProvider;
 
 /**
  * @purpose 发送通知消息客户端
