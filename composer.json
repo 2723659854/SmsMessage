@@ -19,11 +19,5 @@
         "php": ">=7.0",
         "alibabacloud/dypnsapi-20170525": "1.0.9",
         "tencentcloud/tencentcloud-sdk-php": "3.0.710"
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://mirrors.aliyun.com/composer/"
-        }
     }
 }
