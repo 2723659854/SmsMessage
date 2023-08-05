@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Xiaosongshu\Message\provider;
-//require_once dirname(dirname(__DIR__)).'/vendor/autoload.php';
+
 use Xiaosongshu\Message\exception\TencentMsgException;
 use AlibabaCloud\SDK\Dysmsapi\V20170525\Dysmsapi;
 use AlibabaCloud\SDK\Dysmsapi\V20170525\Models\SendSmsRequest;
@@ -17,6 +17,7 @@ use Exception;
  * @example 用法
  * $config=[ 'accessKeyId'=>'LTAI5tBMSpwR9DGfyYz1uQqW', 'accessKeySecret'=>'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA', 'signName'=>'阿里云短信测试','sdkAppId'=>"1400383641" ];
  * $res=(new MessageClient($config))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([$request->post('phone')])->send();
+ *
  */
 class AliSmsProvider implements MessageProviderInterface
 {
@@ -138,11 +139,3 @@ class AliSmsProvider implements MessageProviderInterface
         }
     }
 }
-
-//$client = new AliSmsProvider(new \stdClass(),$config=[
-//    'accessKeyId'=>'LTAI5tBMSpwR9DGfyYz1uQqW',
-//    'accessKeySecret'=>'JdWCJl7WBpAI4ldQsmrjH4bTU9aiKA',
-//    'signName'=>'阿里云短信测试'
-//]);
-//$res=$client->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['13983913423'])->send();
-//var_dump($res);

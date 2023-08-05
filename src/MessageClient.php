@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Xiaosongshu\Message;
 
 use Xiaosongshu\Message\exception\TencentMsgException;
+use Xiaosongshu\Message\provider\AliEmailProvider;
 use Xiaosongshu\Message\provider\AliSmsProvider;
 use Xiaosongshu\Message\provider\MessageProviderInterface;
 use Xiaosongshu\Message\provider\TencentEmailProvider;
@@ -13,9 +14,10 @@ use Xiaosongshu\Message\provider\TencentSmsProvider;
  * @author yanglong
  * @date 2023年2月17日15:42:51
  * @example 阿里云短信发送 (new MessageClient([]))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['1398xxxx423'])->send();
- * @property TencentEmailProvider $Temail
- * @property TencentSmsProvider $Tsms
- * @property AliSmsProvider $Asms
+ * @property TencentEmailProvider $Temail 腾讯邮箱
+ * @property TencentSmsProvider $Tsms 腾讯短信
+ * @property AliSmsProvider $Asms 阿里短信
+ * @property AliEmailProvider $Aemail 阿里邮箱
  */
 class MessageClient
 {
@@ -27,6 +29,8 @@ class MessageClient
         'Tsms' => TencentSmsProvider::class,
         /** 阿里短信 */
         'Asms'=>AliSmsProvider::class,
+        /** 阿里邮件 */
+        'Aemail' =>AliEmailProvider::class
     ];
 
     /** @var array */
@@ -72,7 +76,7 @@ class MessageClient
      */
     public  function register(string $key, string $value): void
     {
-        if (class_exists($value, false)) {
+        if (class_exists($value)) {
             $obj = new $value;
             if ($obj instanceof MessageProviderInterface) {
                 $this->alias[$key] = $value;
