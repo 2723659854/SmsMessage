@@ -45,7 +45,7 @@ use Xiaosongshu\Message\AliSms;
             'accessKeyId'=>'',
             'accessKeySecret'=>'',
             'signName'=>"",
-            'sdkApkId'=>""
+            'sdkAppId'=>""
         ];
         $res=(new MessageClient($config))->Tsms->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
         $res=TencentSms::config($config)->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
