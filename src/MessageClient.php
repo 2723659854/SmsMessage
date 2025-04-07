@@ -9,6 +9,7 @@ use Xiaosongshu\Message\provider\AliSmsProvider;
 use Xiaosongshu\Message\provider\MessageProviderInterface;
 use Xiaosongshu\Message\provider\TencentEmailProvider;
 use Xiaosongshu\Message\provider\TencentSmsProvider;
+use Xiaosongshu\Message\provider\ThinkSmsProvider;
 
 /**
  * @purpose 发送通知消息客户端
@@ -16,6 +17,7 @@ use Xiaosongshu\Message\provider\TencentSmsProvider;
  * @property TencentSmsProvider $Tsms 腾讯短信
  * @property AliSmsProvider $Asms 阿里短信
  * @property AliEmailProvider $Aemail 阿里邮箱
+ * @property ThinkSmsProvider $ThinkSms 顶想云短信
  */
 class MessageClient
 {
@@ -28,7 +30,9 @@ class MessageClient
         /** 阿里短信 */
         'Asms' => AliSmsProvider::class,
         /** 阿里邮件 */
-        'Aemail' => AliEmailProvider::class
+        'Aemail' => AliEmailProvider::class,
+        /** 顶想云短信 */
+        'ThinkSms' => ThinkSmsProvider::class,
     ];
 
     /** @var array */

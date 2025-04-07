@@ -61,7 +61,7 @@ use Xiaosongshu\Message\AliSms;
         $res=MessageClient::Temail()->config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '躺不平，摆不烂'])->sendTo([''])->send();
       
 ```
-####对服务进行扩展
+#### 对服务进行扩展
 ```php 
         $config= [
             'accessKeyId'=>'',

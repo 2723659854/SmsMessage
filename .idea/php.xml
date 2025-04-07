@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/lizhichao/one-sm" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/credentials" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/darabonba-openapi" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/dypnsapi-20170525" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/dysmsapi-20170525" />
+      <path value="$PROJECT_DIR$/vendor/adbario/php-dot-notation" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/endpoint-util" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/gateway-spi" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/openapi-util" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-utils" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-xml" />
+      <path value="$PROJECT_DIR$/vendor/tencentcloud/tencentcloud-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/topthink/think-api" />
+      <path value="$PROJECT_DIR$/vendor/topthink/think-helper" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>
