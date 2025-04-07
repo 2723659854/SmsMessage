@@ -33,10 +33,10 @@ class ThinkSmsProvider implements MessageProviderInterface
      * @param object|null $object
      * @param array $configs = ['accessKeyId'=>'', 'accessKeySecret'=>'', 'signName'=>'', 'sdkAppId'=>""]
      */
-    public function __construct(?object $object,array $configs){
+    public function __construct(?object $object,array $configs = []){
 
-        $this->accessKeyId = $configs['accessKeyId'];
-        $this->signName = $configs['signName'];
+        $this->accessKeyId = $configs['accessKeyId']??"";
+        $this->signName = $configs['signName']??"";
         $this->client = new Client($this->accessKeyId);
     }
 
@@ -102,12 +102,20 @@ class ThinkSmsProvider implements MessageProviderInterface
         }
 
         try {
-            return $this->client->smsBatchSend()
-                ->withSignId($this->signName)
-                ->withTemplateId($this->TemplateId)
-                ->withPhone($this->phoneNumbers)
-                ->withParams($this->templateParam)
-                ->request();
+            if (empty($this->templateParam)){
+                return $this->client->smsBatchSend()
+                    ->withSignId($this->signName)
+                    ->withTemplateId($this->TemplateId)
+                    ->withPhone($this->phoneNumbers)
+                    ->request();
+            }else{
+                return $this->client->smsBatchSend()
+                    ->withSignId($this->signName)
+                    ->withTemplateId($this->TemplateId)
+                    ->withPhone($this->phoneNumbers)
+                    ->withParams($this->templateParam)
+                    ->request();
+            }
         }catch (\Exception $e){
             throw new TencentMsgException($e->getMessage());
         }
