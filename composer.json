@@ -20,7 +20,7 @@
         "alibabacloud/dypnsapi-20170525": "1.0.9",
         "tencentcloud/tencentcloud-sdk-php": "3.0.710",
         "alibabacloud/dysmsapi-20170525": "^2.0",
-        "topthink/think-api": "dev-master",
+        "topthink/think-api": "v1.0.31",
         "ext-json": "*"
     }
 }
