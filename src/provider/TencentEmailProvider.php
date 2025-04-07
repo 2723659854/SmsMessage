@@ -17,21 +17,21 @@ class TencentEmailProvider implements MessageProviderInterface
 {
 
     /** @var Template 邮件模板 */
-    protected Template $template;
+    protected  $template;
     /** @var int 模板id 默认是注册 */
-    protected int $templateId = 36959;
+    protected  $templateId = 36959;
     /** @var Credential 签名 */
-    protected Credential $Credential;
+    protected  $Credential;
     /** @var SendEmailRequest 发送邮件请求 */
-    protected SendEmailRequest $sendRequest;
+    protected  $sendRequest;
     /** @var string 服务id */
-    protected string $secretId;
+    protected  $secretId;
     /** @var string 服务密钥 */
-    protected string $secretKey;
+    protected  $secretKey;
     /** @var string 发件地址 */
-    protected string $fromAddress;
+    protected  $fromAddress;
     /** @var string 服务器大区 */
-    protected string $region = 'ap-hongkong';
+    protected  $region = 'ap-hongkong';
 
     /**
      * 创建客户端

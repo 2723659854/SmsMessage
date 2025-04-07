@@ -22,7 +22,7 @@ use Xiaosongshu\Message\provider\ThinkSmsProvider;
 class MessageClient
 {
     /** @var array|string[] */
-    protected static array $alias = [
+    protected static  $alias = [
         /** 腾讯邮箱 */
         'Temail' => TencentEmailProvider::class,
         /** 腾讯短信 */
@@ -36,10 +36,10 @@ class MessageClient
     ];
 
     /** @var array */
-    protected static array $providers = [];
+    protected static  $providers = [];
 
     /** @var array */
-    public static array $configs = [];
+    public static $configs = [];
 
     /**
      * 初始化配置

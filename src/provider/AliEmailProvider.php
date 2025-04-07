@@ -16,21 +16,21 @@ class AliEmailProvider implements MessageProviderInterface
 {
 
     /** 账户id */
-    protected string $accessKeyId;
+    protected  $accessKeyId;
     /** 账户秘钥 */
-    protected string $accessKeySecret;
+    protected  $accessKeySecret;
     /** 发件地址 */
-    protected string $accountName;
+    protected  $accountName;
     /** 发送邮件请求 */
-    protected SingleSendMailRequest $singleSendMailRequest;
+    protected  $singleSendMailRequest;
     /** 阿里发送邮件客户端 */
-    protected Dm $client;
+    protected  $client;
     /** 收件人地址 */
-    protected string $sendTo;
+    protected  $sendTo;
     /** 邮件主题 */
-    protected string $title;
+    protected  $title;
     /** 邮件内容 */
-    protected string $content;
+    protected  $content;
 
     /**
      * 初始化

@@ -16,19 +16,19 @@ use Exception;
 class AliSmsProvider implements MessageProviderInterface
 {
     /** @var string|mixed $accessKeyId 账户id */
-    protected string $accessKeyId;
+    protected  $accessKeyId;
     /** @var string|mixed $accessKeySecret 账户秘钥 */
-    protected string $accessKeySecret;
+    protected  $accessKeySecret;
     /** @var string $phoneNumbers 用户手机号 */
-    protected string $phoneNumbers;
+    protected  $phoneNumbers;
     /** @var string|mixed $signName 短信签名 */
-    protected string $signName;
+    protected  $signName;
     /** @var string $templateCode 短信模板 */
-    protected string $templateCode;
+    protected  $templateCode;
     /** @var string $templateParam 短信内容 */
-    protected string $templateParam;
-    /** @var Dysmsapi $client 阿里云短信客户端 */
-    protected Dysmsapi $client;
+    protected Dysmsapi $templateParam;
+    /** @var  $client 阿里云短信客户端 */
+    protected  $client;
 
     /**
      * 创建客户端

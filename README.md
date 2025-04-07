@@ -1,5 +1,7 @@
 ### 短信和邮件发送
 
+####  简介
+本扩展支持阿里云、腾讯云和顶想云短信发送，支持阿里云、腾讯云邮件发送。
 #### 安装
 
 ```bash 
@@ -24,9 +26,9 @@ use Xiaosongshu\Message\AliSms;
             'signName'=>'',
             'sdkAppId'=>""
         ];
-        $res=(new MessageClient($configASMS))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
-        $res = AliSms::config($configASMS)->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
-        $res = MessageClient::Asms()->config($configASMS)->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
+        $res=(new MessageClient($configASMS))->Asms->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxx'])->send();
+        $res = AliSms::config($configASMS)->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxx'])->send();
+        $res = MessageClient::Asms()->config($configASMS)->setTemplate("SMS_154950909")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxxx'])->send();
 
         
         /** 阿里云邮件发送配置 */
@@ -35,9 +37,9 @@ use Xiaosongshu\Message\AliSms;
             'accessKeySecret'=>'',
             'fromAddress'=>''
         ];
-        $res = (new MessageClient($configAEmail))->Aemail->setTitle('标题')->setContent(['你好呀'])->sendTo([''])->send();
-        $res = AliEmail::config($configAEmail)->setTitle('标题')->setContent(['你好呀'])->sendTo([''])->send();
-        $res = MessageClient::Aemail()->config($configAEmail)->setTitle('标题')->setContent(['你好呀'])->sendTo([''])->send();
+        $res = (new MessageClient($configAEmail))->Aemail->setTitle('标题')->setContent(['你好呀'])->sendTo(['xxx'])->send();
+        $res = AliEmail::config($configAEmail)->setTitle('标题')->setContent(['你好呀'])->sendTo(['xxx'])->send();
+        $res = MessageClient::Aemail()->config($configAEmail)->setTitle('标题')->setContent(['你好呀'])->sendTo(['xxx'])->send();
 
 
         /** 腾讯短信发送配置 */
@@ -47,18 +49,30 @@ use Xiaosongshu\Message\AliSms;
             'signName'=>"",
             'sdkAppId'=>""
         ];
-        $res=(new MessageClient($config))->Tsms->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
-        $res=TencentSms::config($config)->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
-        $res=MessageClient::Tsms()->config($config)->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo([''])->send();
+        $res=(new MessageClient($config))->Tsms->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxx'])->send();
+        $res=TencentSms::config($config)->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxx'])->send();
+        $res=MessageClient::Tsms()->config($config)->setTemplate("1430565")->setConTent(['code' => rand(100000,999999)])->sendTo(['xxx'])->send();
+        
         /** 腾讯邮件发送配置 */
         $config= [
             'accessKeyId'=>'',
             'accessKeySecret'=>'',
             'fromAddress'=>''
         ];
-        $res=(new MessageClient($config))->Temail->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '牡丹花'])->sendTo([''])->send();
-        $res = TencentEmail::config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '牡丹花'])->sendTo([''])->send();
-        $res=MessageClient::Temail()->config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '躺不平，摆不烂'])->sendTo([''])->send();
+        $res=(new MessageClient($config))->Temail->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '牡丹花'])->sendTo(['xxx'])->send();
+        $res = TencentEmail::config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '牡丹花'])->sendTo(['xxx'])->send();
+        $res=MessageClient::Temail()->config($config)->setTemplate()->setTitle('恭喜发财')->setConTent(['username' => '躺不平，摆不烂'])->sendTo(['xxx'])->send();
+        
+        /** 顶想云配置 */
+        $config=[
+            'accessKeyId'=>"xxxx",
+            'accessKeySecret'=>'',
+            'signName'=>"xxxx",
+            'sdkAppId'=>""
+        ];
+
+        MessageClient::ThinkSms()->config($config)->setTemplate("demoTemplateId")->sendTo(['phone1','phone2','phone3'])->setContent(['code'=>'5000'])->send();
+        \Xiaosongshu\Message\ThinkSms::config($config)->setTemplate("demoTemplateId")->sendTo(['phone1','phone2','phone3'])->setContent(['code'=>'5000'])->send();
       
 ```
 #### 对服务进行扩展

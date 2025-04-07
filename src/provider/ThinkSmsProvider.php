@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Xiaosongshu\Message\provider;
 use think\api\Client;
 use Xiaosongshu\Message\exception\TencentMsgException;
@@ -11,22 +11,22 @@ class ThinkSmsProvider implements MessageProviderInterface
 {
 
     /** @param Client $client 顶想云客户端 */
-    protected Client $client ;
+    protected  $client ;
 
     /** @var string|mixed $accessKeyId 账户id */
-    protected string $accessKeyId;
+    protected  $accessKeyId;
 
     /** @var string $phoneNumbers 用户手机号 */
-    protected string $phoneNumbers;
+    protected  $phoneNumbers;
 
     /** @var string|mixed $signName 短信签名 */
-    protected string $signName;
+    protected  $signName;
 
     /** @var string $TemplateId 短信模板 */
-    protected string $TemplateId;
+    protected  $TemplateId;
 
     /** @var string $templateParam 短信内容 */
-    protected string $templateParam;
+    protected  $templateParam;
 
     /**
      * 初始化配置

@@ -17,22 +17,22 @@ use TencentCloud\Sms\V20210111\SmsClient;
 class TencentSmsProvider implements MessageProviderInterface
 {
     /** @var Credential 签名生成器 */
-    protected Credential $credential;
+    protected  $credential;
     /** @var SendSmsRequest 短信发送请求 */
-    protected SendSmsRequest $request;
+    protected  $request;
     /** 服务id */
     /** @var string|mixed */
-    protected string $secretId;
+    protected  $secretId;
     /** @var string|mixed 服务key */
-    protected string $secretKey;
+    protected  $secretKey;
     /** @var string|mixed SDK的appid */
-    protected string $sdkAppId;
+    protected  $sdkAppId;
     /** @var string|mixed 短信签名 */
-    protected string $signName;
+    protected  $signName;
     /** @var string 模板id */
-    protected string $templateId ;
+    protected  $templateId ;
     /** @var string 服务器大区 */
-    protected string $region = 'ap-guangzhou';
+    protected  $region = 'ap-guangzhou';
 
     /**
      * 发送短信
